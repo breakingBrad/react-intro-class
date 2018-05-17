@@ -18,7 +18,8 @@ class Calculator extends Component {
   }
 
   setDisplay(num) {
-    var display = ( this.state.display === '0' ) ? num : this.state.display + num; 
+
+    var display = ( this.state.display === '0' || this.state.resetDisplay ) ? num : this.state.display + num; 
     this.setState( {  display: (this.state.display.length < 13) ? display : this.state.display   } );
   }
 
@@ -54,7 +55,10 @@ class Calculator extends Component {
       default:
         break;
     }
-    this.setState( { display: String(result) } );
+    this.setState( { 
+      display: String(result), 
+      operator: '',
+      resetDisplay: true } );
   }
 
   clearDisplay() {
